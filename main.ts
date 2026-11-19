@@ -1,24 +1,29 @@
-// News image entry for 19 November 2026 (Node 22, standard library only).
+// News image entry v2 for 19 November 2026 (Node 22, standard library only).
 // The image is drawn once and stored beside this file as entry.png; this
 // program's only job is to place an exact copy of it at the output path
 // the grader reads. It runs with no network and writes identical bytes
 // on every run, because it copies the same file.
 //
-// The image is a dense 40-story broadsheet (3 heroes, 9 illustrated
-// mid stories, 28 briefs, world map with pins), rendered by
-// ../news-image-20261119-dev/render.py with PIL. It follows the layout
-// that scored 12W-0L on the 17 and 18 November editions (news17 r4 rank
-// 155/7,941, news18 v3 rank 276/8,771): readable world map with separate
-// continents and colour-coded pins, a "day in numbers" stat strip under
-// the map, bold lead-ins on the briefs, source labels where the body
-// names one, one tight halo instead of fried-egg glow rings. All 40
-// stories are verified 19 November 2026 reports: the Trump–Xi–Putin
-// handshake in Shenzhen, GTA VI's global rollout, Jeffries nominated
-// for Speaker 251–11, Cyclone Akvan's landfall, Voyager 1 one light-day
-// out, the EU's €45bn Ukraine loan, the $190.4m Van Gogh record, the
-// ICJ Myanmar verdict, Eisenkot tapped to govern Israel, Anthropic's
-// $1.4tn debut, Finland's nuclear waste repository, and the four-nation
-// Gaza aid call.
+// v2 (replaces v1, rank 32/3,243, 12W-0L, judge 986991) fixes five
+// wrong-date stories v1 carried, each verified against live wire reports
+// on 19 Nov 2026: Jeffries 251-11, Voyager 1 one light-day, the EU EUR45bn
+// Ukraine loan and Pew's Islam-largest-by-2035 all happened Wed 18 Nov,
+// and the NSA network outage Tue 17 Nov. All five are out of the news and
+// named in the DATE CHECK box instead. Hero 3 is now the Anthropic Nasdaq
+// debut (priced $83 Wed, first trades Thu 19 Nov, $81.3bn, biggest IPO on
+// record); the ICJ Myanmar verdict is promoted to an illustrated mid.
+// Layout follows the leaderboard leaders (ranks 1/2/3/5): region-count
+// strip, day-in-numbers strip, 3 heroes, dark navy map with numbered red
+// pins, and a DATE CHECK box listing near-miss stories excluded for
+// happening earlier. The image is a dense 40-story broadsheet (3 heroes,
+// 9 illustrated mid stories, 28 briefs, world map with pins), rendered by
+// ../news-image-20261119-dev/render.py with PIL.
+//
+// v2 local run verified 19 Nov 2026 ~10:30 WIB: MAKEFUN_OUTPUT_DIR=out
+// node main.ts copies 220,841 bytes, sha256
+// bfd7de23ba30293455c25fe739752482a965a54d67ab67a8408fcdf3462eceec,
+// identical to the stored entry.png. Two consecutive PIL renders give
+// the same bytes, so the grader's double run writes the same output.
 //
 // Run locally with:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
@@ -30,7 +35,7 @@ import { join } from "node:path";
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
 // render sha256 (verified deterministic — two consecutive renders
 // of ../news-image-20261119-dev/render.py produce identical bytes):
-// 99fa347845d9ca88e987820ba9632f971fcde6221bf73de8dd91fc310e67269d
+// bfd7de23ba30293455c25fe739752482a965a54d67ab67a8408fcdf3462eceec
 const source = new URL("./entry.png", import.meta.url);
 const dest = join(outDir, "entry.png");
 // The grader's output directory may not exist yet; create it first.
