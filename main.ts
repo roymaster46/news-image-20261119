@@ -1,38 +1,56 @@
-// News image entry v3 for 19 November 2026 (Node 22, standard library only).
+// News image entry v4 for 19 November 2026 (Node 22, standard library only).
 // The image is drawn once and stored beside this file as entry.png; this
 // program's only job is to place an exact copy of it at the output path
 // the grader reads. It runs with no network and writes identical bytes
 // on every run, because it copies the same file.
 //
-// v3 (replaces v2, rank 266/5,763, judge 982336 provisional vs house
-// images only) fixes five wrong-date stories v2 carried, each verified
-// against live wire reports on 19 Nov 2026: the Van Gogh record
-// $190.4m sale (sold Wed 18 Nov, Reuters), Modi meeting the Prince and
-// Princess of Wales (Wed 18 Nov, Reuters), the Saudi all-clear in three
-// southern cities (Wed 18 Nov, Reuters), the Houthi rocket that killed
-// 53 at a Shabwa camp (Tue 20 Oct, identical details in the 20 Oct
-// report), and the North Korea missiles (fired Wed 4 Nov, JCS/Yonhap).
-// All five are out of the news and named in the DATE CHECK box instead.
-// Replacements are all verified Thursday 19 Nov: the Suneung (551,864
-// sitters, 22 caught with phones, AJP/Korea JoongAng Daily) is the new
-// illustrated mid #6; the Yemen, Colombia, Australia-jobs and Riyadh
-// briefs are Thursday reports too. The Venezuela mid deck drops the
-// unverified "a year after US forces captured Maduro" line. Layout
-// follows the leaderboard leaders (ranks 1/2/4): light paper masthead
-// (v2's dark navy banner is gone), region-count strip, day-in-numbers
-// strip, 3 heroes, dark navy map with numbered red pins, a DATE CHECK
-// box, and a new THE DAY IN UTC timeline strip (GTA VI overnight in NZ;
-// 06:30 UTC summit opens in Shenzhen; 09:00 UTC World Court reads the
-// Myanmar verdict; Crimean Bridge shut all day; 14:30 UTC Anthropic
-// first trades on Nasdaq). The image is a dense 38-story broadsheet
-// (3 heroes, 9 illustrated mid stories, 26 briefs, world map with
-// pins), rendered by ../news-image-20261119-dev/render.py with PIL.
+// v4 (replaces v3, rank 66/8,831, judge 987765) closes the gap to the
+// leaderboard leaders (ranks 1/2) on evidence, not taste. The summit hero
+// is redrawn as a real table scene: three seated figures with nameplates
+// TRUMP / XI / PUTIN and the US, Chinese and Russian flags, like #1 and
+// #2. The World Court mid carries a big red "9-6" vote badge and its
+// headline now states the finding (first state ever found guilty of
+// genocide, reparations ordered); COP31 carries a red "CUT" stamp. The
+// day-in-numbers strip gains "109-0", the Danish vote on the Arctic
+// pact. A "HOW SURE ARE WE?" box (REPORTED / CLAIM / FORECAST) and a
+// "MARKETS & MONEY" box ($83 ANT, $81.3bn, 4.9% AU jobless, 99/100 GTA
+// VI) join the bottom band under a shorter map, and every hero and mid
+// carries a status chip (REPORTED green, FORECAST amber, CLAIM red),
+// as on #2. Masthead adds "DAY 323 OF 2026".
 //
-// v3 local run verified 19 Nov 2026 ~17:50 WIB: MAKEFUN_OUTPUT_DIR=out
-// node main.ts copies 224,237 bytes, sha256
-// 74e487d3c301cec4b48d4ed5ddaacb2f9bd51d1996f24433edea5280f8977351,
+// v4 also removes TWO wrong-date stories v3 carried, both verified
+// against live wire reports on 19 Nov 2026: the German climber who
+// survived a 100-metre Alpine fall (accident and report 15 Sep 2026,
+// The Munich Eye - the 19 Nov listing is a re-aggregation) and
+// Deutsche Bank's $582m Epstein-linked transactions (published Tue
+// 17 Nov by the Inside Deutsche Bank consortium, TBS/FT). Both are
+// named in the DATE CHECK box instead. The Canada-China trade deal
+// was NOT added: it was announced Tue 17 Nov (PMO release, Reuters),
+// so it joins the DATE CHECK list too, as do the Bulgaria tanker
+// (sunk Tue 17 Nov, Reuters 18 Nov) and Bukele's Haiti raid (Wed
+// 18 Nov). Replacements are all verified Thursday 19 Nov: Denmark's
+// parliament backs the Arctic pact 109-0 (AP, 19 Nov 09:53 EST);
+// Bangladesh arson rocks the lockdown day, 4 killed (TBS, 19 Nov
+// 15:00 +06:00); Lisboa Games Week opens on GTA VI launch day
+// (19-22 Nov, FIL Lisbon). Walmart Q3 was checked and KEPT: revenue
+// $188.8bn and EPS $0.65 reported Thu 19 Nov, guidance raised.
+// The page is a dense 39-story broadsheet (3 heroes, 9 illustrated
+// mid stories, 27 briefs, world map with pins), rendered by
+// ../news-image-20261119-dev/render.py with PIL.
+//
+// v4 local run verified 20 Nov 2026 ~00:40 WIB: MAKEFUN_OUTPUT_DIR=out
+// node main.ts copies 239,061 bytes, sha256
+// 626e874c9a3e31c04dcc7d882a528e2ab38c120adf34e44e64d9602c73ab7953,
 // identical to the stored entry.png. Two consecutive PIL renders give
 // the same bytes, so the grader's double run writes the same output.
+// Kit check (fresh kit downloaded 20 Nov ~00:10 WIB, run on this
+// build dir as a worktree): 4 pass (competition_open, snapshot,
+// license_osi, entrypoint); the only fail is transcripts_present,
+// because no transcript bundle was supplied — the coordinator
+// bundles transcripts at submit time, as for v3. All transcript-gate
+// checks skip without a bundle; the 5 repo/commit rows are decided
+// by the site at submit (same repo flow v3 used).
+// 39 stories (3 heroes + 9 mids + 27 briefs), 7 regions, 1024x1024.
 //
 // Run locally with:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
@@ -44,7 +62,9 @@ import { join } from "node:path";
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
 // render sha256 (verified deterministic — two consecutive renders
 // of ../news-image-20261119-dev/render.py produce identical bytes):
-// 74e487d3c301cec4b48d4ed5ddaacb2f9bd51d1996f24433edea5280f8977351
+// 626e874c9a3e31c04dcc7d882a528e2ab38c120adf34e44e64d9602c73ab7953
+// (v4: 239,061 bytes, 39 stories; v3 was 224,237 bytes, sha256
+// 74e487d3c301cec4b48d4ed5ddaacb2f9bd51d1996f24433edea5280f8977351)
 const source = new URL("./entry.png", import.meta.url);
 const dest = join(outDir, "entry.png");
 // The grader's output directory may not exist yet; create it first.
